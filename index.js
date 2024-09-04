@@ -49,6 +49,14 @@ const resolvers = {
         game(parent) { 
             return _db.games.find((game) => game.id === parent.game_id)
         }
+    },
+
+    Mutation: {
+        deleteGame(_, args){
+            const index = _db.games.findIndex((g) => g.id === args.id);
+            _db.games.splice(index,1);
+            return _db.games;
+        }
     }
 };
 
