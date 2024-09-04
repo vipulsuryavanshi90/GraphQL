@@ -52,9 +52,17 @@ const resolvers = {
     },
 
     Mutation: {
-        deleteGame(_, args){
+        deleteGame(_, args) {
             const index = _db.games.findIndex((g) => g.id === args.id);
             _db.games.splice(index,1);
+            return _db.games;
+        },
+
+        addGame(_, args) {
+            _db.games.push({
+                id: (_db.games.length + 1).toString(),
+                ...args.game
+            });
             return _db.games;
         }
     }
