@@ -64,6 +64,18 @@ const resolvers = {
                 ...args.game
             });
             return _db.games;
+        },
+
+        updateGame(_, args) {
+           const index =  _db.games.findIndex((g) => g.id === args.id);
+           if(index !== -1){
+               _db.games[index] = {
+                id: args.id,
+                ...args.game
+               } 
+               return _db.games[index];
+           }
+           return _db.games.find((g) => g.id === args.id)
         }
     }
 };
