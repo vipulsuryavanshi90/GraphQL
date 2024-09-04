@@ -1,0 +1,34 @@
+const typeDefs = `#graphql
+type Game {
+    id: ID!,
+    title: String!,
+    platfrom: [String!]!,
+    reviews: [Review!]
+}
+
+type Review {
+    id: ID!,
+    rating: String!,
+    content: String!,
+    game: Game!,
+    author: Author!
+}
+
+type Author {
+    id: ID!,
+    name: String!,
+    verified: Boolean!,
+    reviews: [Review!]
+}
+
+type Query {
+    games: [Game],
+    game(id: ID): Game,
+    reviews: [Review],
+    review(id: ID): Review,
+    authors: [Author],
+    author(id: ID): Author
+}
+`;
+
+export default typeDefs;
